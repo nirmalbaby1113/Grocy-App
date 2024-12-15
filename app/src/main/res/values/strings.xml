@@ -7,4 +7,24 @@
     <string name="filter">Filter</string>
     <string name="sort">Sort</string>
     <string name="cook_for_me">Cook For Me</string>
+    <string name="add_grocery">Add a Grocery Item</string>
+    <string name="dynamic_list">Create a Dynamic Shopping List</string>
+    <string name="item_name_title">Item Name</string>
+    <string name="item_name_hint">Butter</string>
+    <string name="item_quantity_title">Item Quantity</string>
+    <string name="item_quantity_hint">9999</string>
+    <string name="expiry_date_title">Expiry Date</string>
+    <string name="expiry_date_hint">Select expiry date</string>
+    <string name="item_price_title">Item Price</string>
+    <string name="item_price_hint">9999</string>
+    <string name="item_description_title">Description</string>
+    <string name="item_description_hint">Enter a Description</string>
+    <string name="pop_up_close">Close</string>
+    <string name="pop_up_add">Add</string>
+    <string name="error_invalid_input">Invalid Input</string>
+
+    <string-array name="quantity_units">
+        <item>Kg</item>
+        <item>Ct</item>
+    </string-array>
 </resources>

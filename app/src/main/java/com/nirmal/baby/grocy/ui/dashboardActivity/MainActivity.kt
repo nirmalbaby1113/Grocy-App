@@ -1,17 +1,26 @@
 package com.nirmal.baby.grocy.ui.dashboardActivity
 
+import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.nirmal.baby.grocy.R
+import com.nirmal.baby.grocy.data.model.GroceryItem
 import com.nirmal.baby.grocy.databinding.ActivityMainBinding
+import com.nirmal.baby.grocy.viewmodel.MainActivityViewModel
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
+
+
 
     private lateinit var binding: ActivityMainBinding
     private var isFabExpanded = false
@@ -28,13 +37,17 @@ class MainActivity : AppCompatActivity() {
             } else {
                 showButtons()
             }
-            isFabExpanded = !isFabExpanded
+            //isFabExpanded = !isFabExpanded
         }
 
 
         // Add button click listeners
         binding.addGroceryButton.setOnClickListener {
             // Handle Add Grocery click
+            hideButtons()
+            val dialog = AddGroceryDialogFragment()
+            dialog.show(supportFragmentManager, "AddGroceryDialogFragment")
+
         }
 
         binding.createShoppingListButton.setOnClickListener {
@@ -54,6 +67,9 @@ class MainActivity : AppCompatActivity() {
         binding.createShoppingListButton.startAnimation(createShoppingListAnim)
 
         binding.fab.setImageResource(R.drawable.ic_close)
+
+        isFabExpanded = !isFabExpanded
+
     }
 
     private fun hideButtons() {
@@ -82,5 +98,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.fab.setImageResource(R.drawable.ic_add)
+
+        isFabExpanded = !isFabExpanded
     }
+
+
 }

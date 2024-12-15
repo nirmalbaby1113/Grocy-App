@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:padding="16dp">
+
+    <!-- Close Button -->
+    <ImageButton
+        android:id="@+id/closeButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@null"
+        android:src="@drawable/ic_close"
+        android:contentDescription="@string/pop_up_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Item Name Title -->
+    <TextView
+        android:id="@+id/itemNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_name_title"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/closeButton"
+        android:layout_marginTop="8dp" />
+
+    <!-- Item Name -->
+    <EditText
+        android:id="@+id/itemNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_name_hint"
+        android:background="@drawable/search_background"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemNameTitle"
+        android:layout_marginTop="4dp" />
+
+    <!-- Item Quantity Title -->
+    <TextView
+        android:id="@+id/itemQuantityTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_quantity_title"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemNameEditText"
+        android:layout_marginTop="8dp" />
+
+    <!-- Item Quantity -->
+    <EditText
+        android:id="@+id/itemQuantityEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_quantity_hint"
+        android:inputType="number"
+        android:background="@drawable/search_background"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/quantityUnitSpinner"
+        app:layout_constraintTop_toBottomOf="@id/itemQuantityTitle"
+        android:layout_marginTop="4dp" />
+
+    <Spinner
+        android:id="@+id/quantityUnitSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/quantity_units"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemQuantityTitle"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Item Price Title -->
+    <TextView
+        android:id="@+id/itemPriceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_price_title"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/quantityUnitSpinner"
+        android:layout_marginTop="8dp" />
+
+    <!-- Item Price -->
+    <EditText
+        android:id="@+id/itemPriceEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_price_hint"
+        android:inputType="numberDecimal"
+        android:background="@drawable/search_background"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/expiryDateTextView"
+        app:layout_constraintTop_toBottomOf="@id/itemPriceTitle"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Expiry Date -->
+    <TextView
+        android:id="@+id/expiryDateTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/expiry_date_hint"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/itemPriceEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemPriceTitle"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Description Title -->
+    <TextView
+        android:id="@+id/itemDescriptionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_description_title"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expiryDateTextView"
+        android:layout_marginTop="8dp" />
+
+    <!-- Description -->
+    <EditText
+        android:id="@+id/itemDescriptionEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_description_hint"
+        android:minHeight="80dp"
+        android:gravity="top"
+        android:padding="10dp"
+        android:background="@drawable/search_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemDescriptionTitle"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Add Button -->
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pop_up_add"
+        android:background="@drawable/button_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemDescriptionEditText"
+        android:layout_marginTop="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
