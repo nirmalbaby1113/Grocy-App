@@ -21,7 +21,11 @@
     <string name="item_description_hint">Enter a Description</string>
     <string name="pop_up_close">Close</string>
     <string name="pop_up_add">Add</string>
+    <string name="pop_up_tryAgain">Try Again</string>
     <string name="error_invalid_input">Invalid Input</string>
+    <string name="item_added_success">Item added successfully!</string>
+    <string name="error_message">Unable to update. Please try again</string>
+    <string name="timeout_message">The operation is taking too long. Please try again.</string>
 
     <string-array name="quantity_units">
         <item>Kg</item>

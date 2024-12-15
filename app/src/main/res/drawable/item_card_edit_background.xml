@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background color -->
+    <solid android:color="@android:color/transparent" />
+
+    <!-- Stroke -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/voilet_text" /> <!-- Set your desired stroke color -->
+
+    <!-- Corner radius (optional) -->
+    <corners android:radius="4dp" /> <!-- Adjust radius for rounded corners -->
+</shape>

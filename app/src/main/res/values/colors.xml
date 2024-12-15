@@ -7,5 +7,6 @@
     <color name="background_floating_button">#F9F5FF</color>
     <color name="voilet_text">#B692F6</color>
     <color name="classic_red">#F44336</color>
+    <color name="green">#2CA71A</color>
     <color name="button_background_color">#7F56D9</color>
 </resources>

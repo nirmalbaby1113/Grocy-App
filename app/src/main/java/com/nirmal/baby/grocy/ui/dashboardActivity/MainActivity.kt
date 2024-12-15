@@ -3,6 +3,7 @@ package com.nirmal.baby.grocy.ui.dashboardActivity
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -10,25 +11,47 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.nirmal.baby.grocy.R
 import com.nirmal.baby.grocy.data.model.GroceryItem
 import com.nirmal.baby.grocy.databinding.ActivityMainBinding
 import com.nirmal.baby.grocy.viewmodel.MainActivityViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 
 
     private lateinit var binding: ActivityMainBinding
+    private val groceryViewModel: MainActivityViewModel by viewModels()
     private var isFabExpanded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val groceryAdapter = GroceryListAdapter()
+        binding.groceryRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.groceryRecyclerView.adapter = groceryAdapter
+
+        groceryViewModel.getGroceryList().observe(this) { groceries ->
+            if (groceries.isNullOrEmpty()) {
+                binding.emptyStateLayout.visibility = View.VISIBLE
+                binding.listLayout.visibility = View.GONE
+            } else {
+                binding.emptyStateLayout.visibility = View.GONE
+                binding.listLayout.visibility = View.VISIBLE
+                groceryAdapter.submitList(groceries)
+            }
+            Log.d("MainActivity", "Groceries received: $groceries")
+        }
+
 
         // Set up FAB click listener
         binding.fab.setOnClickListener {

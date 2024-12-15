@@ -1,10 +1,13 @@
 package com.nirmal.baby.grocy.data.model
 
 data class GroceryItem(
-    val name: String,
-    val quantity: String,
-    val unit: String,
-    val expiryDate: String,
-    val price: Double?,
-    val description: String
-)
+    var id: String? = null,
+    var name: String = "",
+    var quantity: String = "",
+    var unit: String = "",
+    var expiryDate: String? = "",
+    var price: Double? = null,
+    var description: String = ""
+) {
+    constructor() : this(null, "", "", "", "", null, "")
+}
