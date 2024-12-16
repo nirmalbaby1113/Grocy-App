@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:padding="16dp">
+
+    <!-- Close Button -->
+    <ImageButton
+        android:id="@+id/closeButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@null"
+        android:src="@drawable/ic_close"
+        android:contentDescription="@string/pop_up_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- First Button (Sort by Name Ascending) -->
+    <Button
+        android:id="@+id/btnNameAsc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Name (A-Z)"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnNameDesc"
+        app:layout_constraintTop_toBottomOf="@id/closeButton"
+        app:layout_constraintHorizontal_chainStyle="spread" />
+
+    <!-- Second Button (Sort by Date Ascending) -->
+    <Button
+        android:id="@+id/btnNameDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Name (Z-A)"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/button_background"
+        app:layout_constraintStart_toEndOf="@id/btnNameAsc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/closeButton" />
+
+    <!-- Third Button (Sort by Name Descending) -->
+    <Button
+        android:id="@+id/btnDateAsc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Date (A-Z)"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnDateDesc"
+        app:layout_constraintTop_toBottomOf="@id/btnNameAsc"
+        app:layout_constraintHorizontal_chainStyle="spread" />
+
+    <!-- Fourth Button (Sort by Date Descending) -->
+    <Button
+        android:id="@+id/btnDateDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Date (Z-A)"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/button_background"
+        app:layout_constraintStart_toEndOf="@id/btnDateAsc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnNameAsc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
