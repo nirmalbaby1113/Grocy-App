@@ -1,8 +1,6 @@
 package com.nirmal.baby.grocy.ui.dashboardActivity
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.app.DatePickerDialog
+import android.app.AlertDialog
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,16 +17,14 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.nirmal.baby.grocy.R
 import com.nirmal.baby.grocy.data.model.GroceryItem
 import com.nirmal.baby.grocy.databinding.ActivityMainBinding
 import com.nirmal.baby.grocy.viewmodel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Calendar
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -48,6 +44,15 @@ class MainActivity : AppCompatActivity() {
         val groceryAdapter = GroceryListAdapter()
         binding.groceryRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.groceryRecyclerView.adapter = groceryAdapter
+
+        // Set the delete callback
+        groceryAdapter.onDeleteClick = { groceryItem ->
+            showCustomDeleteDialog(groceryItem)
+        }
+
+        groceryAdapter.onEditClick = { groceryItem ->
+            showEditDialog(groceryItem)
+        }
 
 
         groceryViewModel.getGroceryList().observe(this) { groceries ->
@@ -223,6 +228,106 @@ class MainActivity : AppCompatActivity() {
 
         isFabExpanded = !isFabExpanded
     }
+
+    private fun showEditDialog(groceryItem: GroceryItem) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.edit_grocery_dialog)
+
+        val editName = dialog.findViewById<EditText>(R.id.itemNameEditTextEdit)
+        val editQuantity = dialog.findViewById<EditText>(R.id.itemQuantityEditTextEdit)
+        val editPrice = dialog.findViewById<EditText>(R.id.itemPriceEditTextEdit)
+        val editQuantityUnit = dialog.findViewById<Spinner>(R.id.quantityUnitSpinnerEdit)
+        val editDate = dialog.findViewById<TextView>(R.id.expiryDateTextViewEdit)
+        val editDescription = dialog.findViewById<EditText>(R.id.itemDescriptionEditTextEdit)
+        val btnCancel = dialog.findViewById<Button>(R.id.cancelButtonEdit)
+        val btnSave = dialog.findViewById<Button>(R.id.saveButtonEdit)
+
+        // Pre-fill fields with the current values
+        editName.setText(groceryItem.name)
+        editQuantity.setText(groceryItem.quantity)
+        editPrice.setText(groceryItem.price.toString())
+
+
+        val unitList = listOf(groceryItem.unit)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, unitList)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        editQuantityUnit.adapter = adapter
+
+        editQuantityUnit.setSelection(0)
+
+        editDate.setText(groceryItem.expiryDate)
+
+        if (groceryItem.description.isNotEmpty()){
+            editDescription.setText(groceryItem.description)
+        }
+
+
+        // Cancel button
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        // Save button
+        btnSave.setOnClickListener {
+            val updatedName = editName.text.toString().trim()
+            val updatedQuantity = editQuantity.text.toString().trim()
+            val updatedPrice = editPrice.text.toString().trim()
+            val updatedQuantityUnit = editQuantityUnit.selectedItem
+            val updatedDate = editDate.text.toString().trim()
+            val updatedDescription = editDescription.text.toString().trim()
+
+            if (updatedName.isNotEmpty() && updatedQuantity.isNotEmpty() && updatedPrice.isNotEmpty()) {
+                val updatedItem = groceryItem.copy(name = updatedName, quantity = updatedQuantity, unit = updatedQuantityUnit.toString(),
+                                                        expiryDate = updatedDate, price = updatedPrice.toDouble(), description = updatedDescription)
+                groceryViewModel.updateGroceryItem(updatedItem) // Notify ViewModel
+                dialog.dismiss()
+            } else {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Set dialog window size
+        val window = dialog.window
+        window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.9).toInt(), // 90% of screen width
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        window?.setBackgroundDrawableResource(android.R.color.transparent) // Optional: Transparent background
+        dialog.show()
+    }
+
+
+    private fun showCustomDeleteDialog(groceryItem: GroceryItem) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_custom_delete)
+
+        // Get references to dialog views
+        val title = dialog.findViewById<TextView>(R.id.tvDialogTitle)
+        //val message = dialog.findViewById<TextView>(R.id.tvDialogMessage)
+        val btnCancel = dialog.findViewById<Button>(R.id.btnCancel)
+        val btnDelete = dialog.findViewById<Button>(R.id.btnDelete)
+
+        // Set title or message dynamically if needed
+        //title.text = "Confirm Deletion?"
+        //message.text = "Do you want to delete '${groceryItem.name}'? This cannot be undone."
+
+        title.text = "Are you sure you want to delete '${groceryItem.name}'?"
+
+        // Cancel button action
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        // Delete button action
+        btnDelete.setOnClickListener {
+            groceryViewModel.deleteGroceryItem(groceryItem) // Notify ViewModel
+            dialog.dismiss()
+        }
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent) // Transparent background
+        dialog.show()
+    }
+
 
 
 }

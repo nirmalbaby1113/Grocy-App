@@ -9,7 +9,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainActivityViewModel @Inject constructor(
+class
+MainActivityViewModel @Inject constructor(
     private val repository: GroceryRepository
 ) : ViewModel() {
 
@@ -18,4 +19,15 @@ class MainActivityViewModel @Inject constructor(
     fun addGroceryItem(item: GroceryItem, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         repository.addGroceryItem(item, onSuccess, onFailure)
     }
+
+    fun deleteGroceryItem(groceryItem: GroceryItem) {
+        repository.deleteGroceryItem(groceryItem)
+    }
+
+    fun updateGroceryItem(item: GroceryItem) {
+        repository.updateGroceryItem(item)
+    }
+
+
+
 }

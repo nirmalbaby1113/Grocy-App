@@ -44,4 +44,29 @@ class GroceryRepository {
                 onFailure(exception)
             }
     }
+
+    fun deleteGroceryItem(item: GroceryItem) {
+        db.collection("groceries").document(item.id.toString())
+            .delete()
+            .addOnSuccessListener {
+                Log.d("GroceryRepository", "Item deleted successfully")
+            }
+            .addOnFailureListener { exception ->
+                Log.e("GroceryRepository", "Error deleting item", exception)
+            }
+    }
+
+    fun updateGroceryItem(item: GroceryItem) {
+        db.collection("groceries").document(item.id.toString())
+            .set(item)
+            .addOnSuccessListener {
+                Log.d("GroceryRepository", "Item updated successfully")
+            }
+            .addOnFailureListener { exception ->
+                Log.e("GroceryRepository", "Error updating item", exception)
+            }
+    }
+
+
+
 }

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:padding="16dp">
+
+    <!-- Close Button -->
+    <ImageButton
+        android:id="@+id/closeButtonEdit"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@null"
+        android:src="@drawable/ic_close"
+        android:contentDescription="@string/pop_up_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Item Name Title -->
+    <TextView
+        android:id="@+id/itemNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_name_title"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/closeButtonEdit"
+        android:layout_marginTop="8dp" />
+
+    <!-- Item Name -->
+    <EditText
+        android:id="@+id/itemNameEditTextEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_name_hint"
+        android:background="@drawable/search_background"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemNameTitle"
+        android:layout_marginTop="4dp" />
+
+    <!-- Item Quantity Title -->
+    <TextView
+        android:id="@+id/itemQuantityTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_quantity_title"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemNameEditTextEdit"
+        android:layout_marginTop="8dp" />
+
+    <!-- Item Quantity -->
+    <EditText
+        android:id="@+id/itemQuantityEditTextEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_quantity_hint"
+        android:inputType="number"
+        android:background="@drawable/search_background"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/quantityUnitSpinnerEdit"
+        app:layout_constraintTop_toBottomOf="@id/itemQuantityTitle"
+        android:layout_marginTop="4dp" />
+
+    <Spinner
+        android:id="@+id/quantityUnitSpinnerEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/quantity_units"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemQuantityTitle"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Item Price Title -->
+    <TextView
+        android:id="@+id/itemPriceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_price_title"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/quantityUnitSpinnerEdit"
+        android:layout_marginTop="8dp" />
+
+    <!-- Item Price -->
+    <EditText
+        android:id="@+id/itemPriceEditTextEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_price_hint"
+        android:inputType="numberDecimal"
+        android:background="@drawable/search_background"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/expiryDateTextViewEdit"
+        app:layout_constraintTop_toBottomOf="@id/itemPriceTitle"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Expiry Date -->
+    <TextView
+        android:id="@+id/expiryDateTextViewEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/expiry_date_hint"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/itemPriceEditTextEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemPriceTitle"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Description Title -->
+    <TextView
+        android:id="@+id/itemDescriptionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_description_title"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expiryDateTextViewEdit"
+        android:layout_marginTop="8dp" />
+
+    <!-- Description -->
+    <EditText
+        android:id="@+id/itemDescriptionEditTextEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_description_hint"
+        android:minHeight="80dp"
+        android:gravity="top"
+        android:padding="10dp"
+        android:background="@drawable/search_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemDescriptionTitle"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Add Button -->
+    <Button
+        android:id="@+id/cancelButtonEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pop_up_cancel"
+        android:background="@drawable/button_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/saveButtonEdit"
+        app:layout_constraintTop_toBottomOf="@id/itemDescriptionEditTextEdit"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp" />
+
+    <Button
+        android:id="@+id/saveButtonEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pop_up_save"
+        android:background="@drawable/button_background"
+        app:layout_constraintStart_toEndOf="@id/cancelButtonEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemDescriptionEditTextEdit"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp" />
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBarEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Success Message -->
+    <LinearLayout
+        android:id="@+id/linearLayoutsuccessMessageEditEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:src="@drawable/ic_check"
+            android:layout_gravity="center"
+            android:contentDescription="@string/pop_up_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/successMessageEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_added_success"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:drawablePadding="8dp"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/successMessageOkButtonEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/pop_up_close"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_background" />
+
+    </LinearLayout>
+
+    <!-- Error Message -->
+    <LinearLayout
+        android:id="@+id/linearLayoutErrorMessageEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:src="@drawable/ic_error"
+            android:layout_gravity="center"
+            android:contentDescription="@string/pop_up_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error_message"
+            android:textColor="@android:color/holo_red_dark"
+            android:drawablePadding="8dp"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/errorMessageTrayAgainButtonEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/pop_up_tryAgain"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_background" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

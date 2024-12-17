@@ -19,6 +19,8 @@ class GroceryListAdapter : ListAdapter<GroceryItem, GroceryListAdapter.GroceryVi
 
     private var groceryList = listOf<GroceryItem>() // Holds the full list
     private var filteredList = listOf<GroceryItem>() // Holds the filtered list
+    var onDeleteClick: (GroceryItem) -> Unit = {}
+    var onEditClick: (GroceryItem) -> Unit = {}
 
 
     companion object {
@@ -60,7 +62,7 @@ class GroceryListAdapter : ListAdapter<GroceryItem, GroceryListAdapter.GroceryVi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryViewHolder {
         val binding = ItemGroceryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return GroceryViewHolder(binding)
+        return GroceryViewHolder(binding, onDeleteClick, onEditClick)
     }
 
     override fun onBindViewHolder(holder: GroceryViewHolder, position: Int) {
@@ -86,7 +88,10 @@ class GroceryListAdapter : ListAdapter<GroceryItem, GroceryListAdapter.GroceryVi
         submitList(filteredList)
     }
 
-    class GroceryViewHolder(private val binding: ItemGroceryBinding) : RecyclerView.ViewHolder(binding.root) {
+    class GroceryViewHolder(private val binding: ItemGroceryBinding,
+                            private val onDeleteClick: (GroceryItem) -> Unit,
+                            private val onEditClick: (GroceryItem) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: GroceryItem) {
             //Log.d("GroceryListAdapter", "Binding item: ${item.expiryDate}")
             binding.itemName.text = item.name
@@ -112,6 +117,17 @@ class GroceryListAdapter : ListAdapter<GroceryItem, GroceryListAdapter.GroceryVi
             binding.itemExpiry.setTextColor(expiryColor)
 
             binding.itemQuantityUnit.text = item.unit
+
+            // Set click listener for the delete button
+            binding.deleteTextView.setOnClickListener {
+                onDeleteClick(item) // Trigger delete callback
+            }
+
+            // Edit button click listener
+            binding.editTextView.setOnClickListener {
+                onEditClick(item) // Trigger edit callback
+            }
+
         }
 
         private fun calculateRemainingDays(expiryDate: String?): Int {
